@@ -69,7 +69,9 @@ describe('Basic user flow for SPA ', () => {
       }
     };
 
+    // Maybe use entry-page instead journal-entry
     let actualEntryObj = await page.$('journal-entry');
+    // Something to do with this line
     let actualEntryContent = await page.evaluate(actualEntryObj => actualEntryObj.jsonValue, actualEntryObj);
 
 
