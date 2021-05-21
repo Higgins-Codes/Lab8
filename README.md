@@ -19,3 +19,9 @@ It will run tests without a browser UI so we won't have any UI to view to unders
 
 5. What would your beforeAll callback look like if you wanted to start from the settings page before every test case?
 
+```JavaScript
+const settingsBtn = await page.click('img');
+```
+
+This allows us to simulate clicking the settings button. So even if the url doesn't work, we can 
+at least navigate to the settings page using this code.

@@ -1,7 +1,9 @@
 describe('Basic user flow for SPA ', () => {
   beforeAll(async () => {
     await page.goto('http://127.0.0.1:5500');
+    // const settingsBtn = await page.click('img');
     await page.waitForTimeout(500);
+
   });
 
   // test 1 is given
@@ -24,37 +26,56 @@ describe('Basic user flow for SPA ', () => {
       if (plainValue.date.length == 0) { allArePopulated = false; }
       if (plainValue.content.length == 0) { allArePopulated = false; }
     }
-    expect("This is what entries looks like").toBe(entries);
     expect(allArePopulated).toBe(true);
-  }, 30000);
+  }, 30000); /// changed from 30000 to 3000
 
   it('Test3: Clicking first <journal-entry>, new URL should contain /#entry1', async () => {
     // implement test3: Clicking on the first journal entry should update the URL to contain “/#entry1”
-    const entryURL = page.$('img');
-    
+    await page.click('journal-entry');
 
+    expect(page.url().substring(page.url().length - 8)).toBe('/#entry1');
+  }, 10000);
+
+  it('Test4: On first Entry page - checking page header title', async () => {
+    // implement test4: Clicking on the first journal entry should update the header text to “Entry 1” 
+
+    let objHeader = await page.$('h1');
+
+    const strHeader = await page.evaluate(objHeader => objHeader.textContent, objHeader);
+
+    expect(strHeader).toBe('Entry 1');
   });
 
-  // it('Test4: On first Entry page - checking page header title', async () => {
-  //   // implement test4: Clicking on the first journal entry should update the header text to “Entry 1” 
+  it('Test5: On first Entry page - checking <entry-page> contents', async () => {
+    /*
+     implement test5: Clicking on the first journal entry should contain the following contents: 
+        { 
+          title: 'You like jazz?',
+          date: '4/25/2021',
+          content: "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.",
+          image: {
+            src: 'https://i1.wp.com/www.thepopcornmuncher.com/wp-content/uploads/2016/11/bee-movie.jpg?resize=800%2C455',
+            alt: 'bee with sunglasses'
+          }
+        }
+      */
+    let expectedEntryContent = { 
+      title: 'You like jazz?',
+      date: '4/25/2021',
+      content: "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.",
+      image: {
+        src: 'https://i1.wp.com/www.thepopcornmuncher.com/wp-content/uploads/2016/11/bee-movie.jpg?resize=800%2C455',
+        alt: 'bee with sunglasses'
+      }
+    };
 
-  // });
+    let actualEntryObj = await page.$('journal-entry');
+    let actualEntryContent = await page.evaluate(actualEntryObj => actualEntryObj.jsonValue, actualEntryObj);
 
-  // it('Test5: On first Entry page - checking <entry-page> contents', async () => {
-  //   /*
-  //    implement test5: Clicking on the first journal entry should contain the following contents: 
-  //       { 
-  //         title: 'You like jazz?',
-  //         date: '4/25/2021',
-  //         content: "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.",
-  //         image: {
-  //           src: 'https://i1.wp.com/www.thepopcornmuncher.com/wp-content/uploads/2016/11/bee-movie.jpg?resize=800%2C455',
-  //           alt: 'bee with sunglasses'
-  //         }
-  //       }
-  //     */
 
-  // }, 10000);
+    expect(actualEntryContent).toEqual(expectedEntryContent);
+    
+  }, 10000);
 
   // it('Test6: On first Entry page - checking <body> element classes', async () => {
   //   // implement test6: Clicking on the first journal entry should update the class attribute of <body> to ‘single-entry’
