@@ -15,7 +15,7 @@ A unit test fits here because the message length is a specific and easily testab
 
 4. What do you expect to happen if we run our puppeteer tests with the field “headless” set to true?
 
-
+It will run tests without a browser UI so we won't have any UI to view to understand what's going on.
 
 5. What would your beforeAll callback look like if you wanted to start from the settings page before every test case?
 

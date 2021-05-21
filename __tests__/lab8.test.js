@@ -24,59 +24,62 @@ describe('Basic user flow for SPA ', () => {
       if (plainValue.date.length == 0) { allArePopulated = false; }
       if (plainValue.content.length == 0) { allArePopulated = false; }
     }
+    expect("This is what entries looks like").toBe(entries);
     expect(allArePopulated).toBe(true);
   }, 30000);
 
   it('Test3: Clicking first <journal-entry>, new URL should contain /#entry1', async () => {
     // implement test3: Clicking on the first journal entry should update the URL to contain “/#entry1”
+    const entryURL = page.$('img');
+    
 
   });
 
-  it('Test4: On first Entry page - checking page header title', async () => {
-    // implement test4: Clicking on the first journal entry should update the header text to “Entry 1” 
+  // it('Test4: On first Entry page - checking page header title', async () => {
+  //   // implement test4: Clicking on the first journal entry should update the header text to “Entry 1” 
 
-  });
+  // });
 
-  it('Test5: On first Entry page - checking <entry-page> contents', async () => {
-    /*
-     implement test5: Clicking on the first journal entry should contain the following contents: 
-        { 
-          title: 'You like jazz?',
-          date: '4/25/2021',
-          content: "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.",
-          image: {
-            src: 'https://i1.wp.com/www.thepopcornmuncher.com/wp-content/uploads/2016/11/bee-movie.jpg?resize=800%2C455',
-            alt: 'bee with sunglasses'
-          }
-        }
-      */
+  // it('Test5: On first Entry page - checking <entry-page> contents', async () => {
+  //   /*
+  //    implement test5: Clicking on the first journal entry should contain the following contents: 
+  //       { 
+  //         title: 'You like jazz?',
+  //         date: '4/25/2021',
+  //         content: "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.",
+  //         image: {
+  //           src: 'https://i1.wp.com/www.thepopcornmuncher.com/wp-content/uploads/2016/11/bee-movie.jpg?resize=800%2C455',
+  //           alt: 'bee with sunglasses'
+  //         }
+  //       }
+  //     */
 
-  }, 10000);
+  // }, 10000);
 
-  it('Test6: On first Entry page - checking <body> element classes', async () => {
-    // implement test6: Clicking on the first journal entry should update the class attribute of <body> to ‘single-entry’
+  // it('Test6: On first Entry page - checking <body> element classes', async () => {
+  //   // implement test6: Clicking on the first journal entry should update the class attribute of <body> to ‘single-entry’
 
-  });
+  // });
 
-  it('Test7: Clicking the settings icon, new URL should contain #settings', async () => {
-    // implement test7: Clicking on the settings icon should update the URL to contain “/#settings”
+  // it('Test7: Clicking the settings icon, new URL should contain #settings', async () => {
+  //   // implement test7: Clicking on the settings icon should update the URL to contain “/#settings”
 
-  });
+  // });
 
-  it('Test8: On Settings page - checking page header title', async () => {
-    // implement test8: Clicking on the settings icon should update the header to be “Settings”
+  // it('Test8: On Settings page - checking page header title', async () => {
+  //   // implement test8: Clicking on the settings icon should update the header to be “Settings”
 
-  });
+  // });
 
-  it('Test9: On Settings page - checking <body> element classes', async () => {
-    // implement test9: Clicking on the settings icon should update the class attribute of <body> to ‘settings’
+  // it('Test9: On Settings page - checking <body> element classes', async () => {
+  //   // implement test9: Clicking on the settings icon should update the class attribute of <body> to ‘settings’
 
-  });
+  // });
 
-  it('Test10: Clicking the back button, new URL should be /#entry1', async() => {
-    // implement test10: Clicking on the back button should update the URL to contain ‘/#entry1’
+  // it('Test10: Clicking the back button, new URL should be /#entry1', async() => {
+  //   // implement test10: Clicking on the back button should update the URL to contain ‘/#entry1’
 
-  });
+  // });
 
   // define and implement test11: Clicking the back button once should bring the user back to the home page
 
