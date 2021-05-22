@@ -154,18 +154,47 @@ describe('Basic user flow for SPA ', () => {
   });
 
   // define and implement test13: On the home page the <body> element should not have any class attribute 
-  
+  it('test13: On the home page the <body> element should not have any class attribute ', async() => {
+    // removes the class attribute
+    let expectedClass = 0;
+    let actualClass = await page.$eval('body', (page) => {
+      return page.classList.length;
+    });
 
-
+    expect(actualClass).toBe(expectedClass);
+  });
 
   // define and implement test14: Verify the url is correct when clicking on the second entry
+  it('test14: Verify the url is correct when clicking on the second entry', async() => {
+    let expectedUrl = '/#entry2';
+    let actualUrl = await page.$$('journal-entry');
+    await actualUrl[1].click();
+    await page.waitForNavigation();
 
+    expect(page.url().substring(page.url().length - 8)).toBe(expectedUrl);
+  });
 
   // define and implement test15: Verify the title is current when clicking on the second entry
+  it('test15: Verify the title is current when clicking on the second entry', async() => {
+    let objHeader = await page.$('h1');
+    const expectedHeader = 'Entry 2';
 
+    const actualHeader = await page.evaluate(objHeader => objHeader.textContent, objHeader);
+
+    expect(actualHeader).toBe(expectedHeader);
+
+  });
 
   // define and implement test16: Verify the entry page contents is correct when clicking on the second entry
+  it('test16: Verify the entry page contents is correct when clicking on the second entry', async() => {
+    let expectedEntryContent = {"date":"4/26/2021","title":"Run, Forrest! Run!","content":"Mama always said life was like a box of chocolates. You never know what you're gonna get.","image":{"src":"https://s.abcnews.com/images/Entertainment/HT_forrest_gump_ml_140219_4x3_992.jpg","alt":"forrest running"}}
 
+    let actualEntryContent = await page.$eval('entry-page', (entry) => {
+      return entry.entry;
+    });
+
+    expect(actualEntryContent).toEqual(expectedEntryContent);
+  });
 
   // create your own test 17
 
