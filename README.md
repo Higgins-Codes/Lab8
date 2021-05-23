@@ -5,6 +5,9 @@ Ryan Lay
 Andres Gutierrez
 Sanjai Subramanian
 
+## Github Pages Link
+https://higgins-codes.github.io/Lab8/
+
 ## Check your understanding q's (FILL OUT)
 1. In your own words: Where would you fit your automated tests in your Bujo project development pipeline? (just write the letter)
 
