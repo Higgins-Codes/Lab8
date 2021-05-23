@@ -196,12 +196,58 @@ describe('Basic user flow for SPA ', () => {
     expect(actualEntryContent).toEqual(expectedEntryContent);
   });
 
-  // create your own test 17
+  // create your own test 17 test forward button
+  it('test17: Test forward button functionality', async() => {
+    const previousUrl = page.url;
+    // go back
+    page.goBack();
+    // go forward
+    page.goForward();
+    // check url
+    expect(page.url).toBe(previousUrl);
+  });
+
 
   // create your own test 18
+  it('test18: Forward button generates content', async() => {
+    // check forward content still present
+    let expectedEntryContent = {
+      "date":"4/26/2021",
+      "title":"Run, Forrest! Run!",
+      "content":"Mama always said life was like a box of chocolates. You never know what you're gonna get.",
+      "image":{"src":"https://s.abcnews.com/images/Entertainment/HT_forrest_gump_ml_140219_4x3_992.jpg",
+      "alt":"forrest running"}
+    }
+
+    let actualEntryContent = await page.$eval('entry-page', (entry) => {
+      return entry.entry;
+    });
+
+    expect(actualEntryContent).toEqual(expectedEntryContent);
+  });
 
   // create your own test 19
+  it('test19: Main page header link', async() => {
+    // goes to home page
+    const expectedHeader = 'Journal Entries';
+    await page.click('h1');
+
+    const header = await page.$('h1');
+    const headerText = await page.evaluate(header => header.textContent, header);
+
+    expect(headerText).toBe(expectedHeader);
+  });
 
   // create your own test 20
-  
+  it('test20: Check URL of random entry', async() => {
+    // check a random entry for url
+    const entries = await page.$$('journal-entry');
+    const randNum = Math.floor(Math.random() * entries.length);
+    const expectedUrl = `/#entry${randNum + 1}`;
+
+    await entries[randNum].click();
+    await page.waitForNavigation();
+
+    expect(page.url().substring(page.url().length - expectedUrl.length)).toBe(expectedUrl);
+  });
 });

@@ -1,5 +1,10 @@
 # Lab8_Starter
 
+## Names
+Ryan Lay
+Andres Gutierrez
+Sanjai Subramanian
+
 ## Check your understanding q's (FILL OUT)
 1. In your own words: Where would you fit your automated tests in your Bujo project development pipeline? (just write the letter)
 
